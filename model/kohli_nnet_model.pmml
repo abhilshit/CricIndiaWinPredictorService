@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd">
+ <Header copyright="Copyright (c) 2016 asoni" description="Neural Network PMML Model">
+  <Extension name="user" value="asoni" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2016-10-11 21:04:29</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="9">
+  <DataField name="result" optype="categorical" dataType="string">
+   <Value value="INDIA_LOST"/>
+   <Value value="INDIA_WON"/>
+  </DataField>
+  <DataField name="opposite_team" optype="categorical" dataType="string">
+   <Value value="Afghanistan"/>
+   <Value value="Australia"/>
+   <Value value="Bangladesh"/>
+   <Value value="England"/>
+   <Value value="Ireland"/>
+   <Value value="Netherlands"/>
+   <Value value="New Zealand"/>
+   <Value value="Pakistan"/>
+   <Value value="South Africa"/>
+   <Value value="Sri Lanka"/>
+   <Value value="United Arab Emirates"/>
+   <Value value="West Indies"/>
+   <Value value="Zimbabwe"/>
+  </DataField>
+  <DataField name="chasing" optype="categorical" dataType="string">
+   <Value value="false"/>
+   <Value value="true"/>
+  </DataField>
+  <DataField name="batsmanScoreIn10Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn10Overs" optype="continuous" dataType="double"/>
+  <DataField name="batsmanScoreIn20Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn20Overs" optype="continuous" dataType="double"/>
+  <DataField name="batsmanScoreIn30Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn30Overs" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <NeuralNetwork modelName="NeuralNet_model" functionName="classification" numberOfLayers="3" activationFunction="logistic">
+  <MiningSchema>
+   <MiningField name="result" usageType="predicted"/>
+   <MiningField name="opposite_team" usageType="active"/>
+   <MiningField name="chasing" usageType="active"/>
+   <MiningField name="batsmanScoreIn10Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn10Overs" usageType="active"/>
+   <MiningField name="batsmanScoreIn20Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn20Overs" usageType="active"/>
+   <MiningField name="batsmanScoreIn30Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn30Overs" usageType="active"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_result" feature="predictedValue"/>
+   <OutputField name="Probability_INDIA_LOST" optype="continuous" dataType="double" feature="probability" value="INDIA_LOST"/>
+   <OutputField name="Probability_INDIA_WON" optype="continuous" dataType="double" feature="probability" value="INDIA_WON"/>
+  </Output>
+  <NeuralInputs numberOfInputs="19">
+   <NeuralInput id="1">
+    <DerivedField name="derivedNI_opposite_teamAustralia" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Australia"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="2">
+    <DerivedField name="derivedNI_opposite_teamBangladesh" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Bangladesh"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="3">
+    <DerivedField name="derivedNI_opposite_teamEngland" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="England"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="4">
+    <DerivedField name="derivedNI_opposite_teamIreland" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Ireland"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="5">
+    <DerivedField name="derivedNI_opposite_teamNetherlands" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Netherlands"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="6">
+    <DerivedField name="derivedNI_opposite_teamNew Zealand" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="New Zealand"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="7">
+    <DerivedField name="derivedNI_opposite_teamPakistan" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Pakistan"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="8">
+    <DerivedField name="derivedNI_opposite_teamSouth Africa" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="South Africa"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="9">
+    <DerivedField name="derivedNI_opposite_teamSri Lanka" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Sri Lanka"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="10">
+    <DerivedField name="derivedNI_opposite_teamUnited Arab Emirates" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="United Arab Emirates"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="11">
+    <DerivedField name="derivedNI_opposite_teamWest Indies" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="West Indies"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="12">
+    <DerivedField name="derivedNI_opposite_teamZimbabwe" optype="continuous" dataType="double">
+     <NormDiscrete field="opposite_team" value="Zimbabwe"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="13">
+    <DerivedField name="derivedNI_chasingtrue" optype="continuous" dataType="double">
+     <NormDiscrete field="chasing" value="true"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="14">
+    <DerivedField name="derivedNI_batsmanScoreIn10Overs" optype="continuous" dataType="double">
+     <FieldRef field="batsmanScoreIn10Overs"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="15">
+    <DerivedField name="derivedNI_indiaScoreIn10Overs" optype="continuous" dataType="double">
+     <FieldRef field="indiaScoreIn10Overs"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="16">
+    <DerivedField name="derivedNI_batsmanScoreIn20Overs" optype="continuous" dataType="double">
+     <FieldRef field="batsmanScoreIn20Overs"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="17">
+    <DerivedField name="derivedNI_indiaScoreIn20Overs" optype="continuous" dataType="double">
+     <FieldRef field="indiaScoreIn20Overs"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="18">
+    <DerivedField name="derivedNI_batsmanScoreIn30Overs" optype="continuous" dataType="double">
+     <FieldRef field="batsmanScoreIn30Overs"/>
+    </DerivedField>
+   </NeuralInput>
+   <NeuralInput id="19">
+    <DerivedField name="derivedNI_indiaScoreIn30Overs" optype="continuous" dataType="double">
+     <FieldRef field="indiaScoreIn30Overs"/>
+    </DerivedField>
+   </NeuralInput>
+  </NeuralInputs>
+  <NeuralLayer numberOfNeurons="10">
+   <Neuron id="20" bias="-28.0632989001159">
+    <Con from="1" weight="-7.29603366781831"/>
+    <Con from="2" weight="15.4654288716515"/>
+    <Con from="3" weight="-36.8716478989174"/>
+    <Con from="4" weight="-0.681332070427015"/>
+    <Con from="5" weight="-0.359519731532782"/>
+    <Con from="6" weight="-33.6575051816808"/>
+    <Con from="7" weight="0.462337444364059"/>
+    <Con from="8" weight="-3.32425720953896"/>
+    <Con from="9" weight="-5.15271480546242"/>
+    <Con from="10" weight="0.309419224523624"/>
+    <Con from="11" weight="51.5344257203067"/>
+    <Con from="12" weight="-8.0600368322187"/>
+    <Con from="13" weight="-25.7713148983985"/>
+    <Con from="14" weight="3.03466686533752"/>
+    <Con from="15" weight="-0.815452709613769"/>
+    <Con from="16" weight="-4.92592793440216"/>
+    <Con from="17" weight="-3.73411757692638"/>
+    <Con from="18" weight="-1.08598815340386"/>
+    <Con from="19" weight="2.92965786567995"/>
+   </Neuron>
+   <Neuron id="21" bias="-2.32001687473204">
+    <Con from="1" weight="-5.20210565457137"/>
+    <Con from="2" weight="-0.111460566252021"/>
+    <Con from="3" weight="-3.14840533655015"/>
+    <Con from="4" weight="0.299576500244439"/>
+    <Con from="5" weight="-0.1589170999825"/>
+    <Con from="6" weight="2.42304284941751"/>
+    <Con from="7" weight="0.562885002351703"/>
+    <Con from="8" weight="3.2213698214076"/>
+    <Con from="9" weight="-0.0220591091588587"/>
+    <Con from="10" weight="-0.0605144344302869"/>
+    <Con from="11" weight="2.69445831736294"/>
+    <Con from="12" weight="0.341729308219113"/>
+    <Con from="13" weight="0.128463885712251"/>
+    <Con from="14" weight="0.481964626055807"/>
+    <Con from="15" weight="6.60701797858013"/>
+    <Con from="16" weight="13.7061570083137"/>
+    <Con from="17" weight="-12.4308343087258"/>
+    <Con from="18" weight="-7.32912686353481"/>
+    <Con from="19" weight="7.60841200485383"/>
+   </Neuron>
+   <Neuron id="22" bias="-0.406839957879856">
+    <Con from="1" weight="0.333698273589835"/>
+    <Con from="2" weight="-0.540515242144465"/>
+    <Con from="3" weight="0.563594955066219"/>
+    <Con from="4" weight="0.591303714411333"/>
+    <Con from="5" weight="0.644795381696895"/>
+    <Con from="6" weight="0.134052522759885"/>
+    <Con from="7" weight="-0.677843054151162"/>
+    <Con from="8" weight="-0.51088602184318"/>
+    <Con from="9" weight="0.546544753294438"/>
+    <Con from="10" weight="0.0492449020035565"/>
+    <Con from="11" weight="0.150684156222269"/>
+    <Con from="12" weight="0.314888264611363"/>
+    <Con from="13" weight="-0.150707991281524"/>
+    <Con from="14" weight="0.242221902031451"/>
+    <Con from="15" weight="0.0188010554295033"/>
+    <Con from="16" weight="0.330263853818178"/>
+    <Con from="17" weight="-0.440785654867068"/>
+    <Con from="18" weight="-0.466513989446685"/>
+    <Con from="19" weight="-0.675065865879878"/>
+   </Neuron>
+   <Neuron id="23" bias="-6.59823666777457">
+    <Con from="1" weight="13.1151841424437"/>
+    <Con from="2" weight="0.694356536128414"/>
+    <Con from="3" weight="15.3270113477981"/>
+    <Con from="4" weight="0.092770722322166"/>
+    <Con from="5" weight="0.65182612799108"/>
+    <Con from="6" weight="1.1229851126229"/>
+    <Con from="7" weight="-0.163588421902618"/>
+    <Con from="8" weight="-21.8630599636814"/>
+    <Con from="9" weight="8.1108133033279"/>
+    <Con from="10" weight="-0.473750978985366"/>
+    <Con from="11" weight="-21.9318068908053"/>
+    <Con from="12" weight="-1.75211830836777"/>
+    <Con from="13" weight="-8.20304929252342"/>
+    <Con from="14" weight="-10.1284357668237"/>
+    <Con from="15" weight="-4.45978693496089"/>
+    <Con from="16" weight="0.999434842621187"/>
+    <Con from="17" weight="11.3119554971359"/>
+    <Con from="18" weight="7.25750196540169"/>
+    <Con from="19" weight="-5.27098117736086"/>
+   </Neuron>
+   <Neuron id="24" bias="-0.074983054259792">
+    <Con from="1" weight="-0.0783858559560031"/>
+    <Con from="2" weight="0.511074287910014"/>
+    <Con from="3" weight="-0.17074872078374"/>
+    <Con from="4" weight="-0.261100425804034"/>
+    <Con from="5" weight="0.0724208717700094"/>
+    <Con from="6" weight="-0.0100130506325513"/>
+    <Con from="7" weight="-0.519963783212006"/>
+    <Con from="8" weight="0.143124248599634"/>
+    <Con from="9" weight="-0.176462999079376"/>
+    <Con from="10" weight="-0.619730056961998"/>
+    <Con from="11" weight="0.69745365800336"/>
+    <Con from="12" weight="-0.0362443958409131"/>
+    <Con from="13" weight="-0.374432427668944"/>
+    <Con from="14" weight="-0.0576262019108981"/>
+    <Con from="15" weight="-0.0674503247719258"/>
+    <Con from="16" weight="-0.12159101581201"/>
+    <Con from="17" weight="0.409405455412343"/>
+    <Con from="18" weight="0.372569015761837"/>
+    <Con from="19" weight="0.0304735013749451"/>
+   </Neuron>
+   <Neuron id="25" bias="-0.105085140014575">
+    <Con from="1" weight="-0.463774056875632"/>
+    <Con from="2" weight="0.0478004515171051"/>
+    <Con from="3" weight="0.289625741564782"/>
+    <Con from="4" weight="-0.180214780569076"/>
+    <Con from="5" weight="-0.505130674503744"/>
+    <Con from="6" weight="-0.159416057299537"/>
+    <Con from="7" weight="0.545718056941405"/>
+    <Con from="8" weight="0.586071156261645"/>
+    <Con from="9" weight="-0.570324563054751"/>
+    <Con from="10" weight="-0.55566974603571"/>
+    <Con from="11" weight="-0.0189174573736463"/>
+    <Con from="12" weight="0.0921980119101799"/>
+    <Con from="13" weight="0.207910720563097"/>
+    <Con from="14" weight="0.623321908838807"/>
+    <Con from="15" weight="1.69457504754685"/>
+    <Con from="16" weight="0.985775344028194"/>
+    <Con from="17" weight="2.7122636213257"/>
+    <Con from="18" weight="2.28305099698953"/>
+    <Con from="19" weight="6.12091771277482"/>
+   </Neuron>
+   <Neuron id="26" bias="0.50227883909829">
+    <Con from="1" weight="-0.644473342085257"/>
+    <Con from="2" weight="0.117769143497571"/>
+    <Con from="3" weight="0.449991238350049"/>
+    <Con from="4" weight="-0.207323770457879"/>
+    <Con from="5" weight="-0.535974649013951"/>
+    <Con from="6" weight="-0.444314826838672"/>
+    <Con from="7" weight="0.0791777492500841"/>
+    <Con from="8" weight="-0.607378119509667"/>
+    <Con from="9" weight="0.567986017279327"/>
+    <Con from="10" weight="0.295412094704807"/>
+    <Con from="11" weight="0.638369699800387"/>
+    <Con from="12" weight="0.162097152322531"/>
+    <Con from="13" weight="-0.417481154995039"/>
+    <Con from="14" weight="0.51434458992444"/>
+    <Con from="15" weight="-0.593552159238607"/>
+    <Con from="16" weight="-0.225474029220641"/>
+    <Con from="17" weight="0.31107708485797"/>
+    <Con from="18" weight="-0.185502768820152"/>
+    <Con from="19" weight="0.689511706214398"/>
+   </Neuron>
+   <Neuron id="27" bias="-0.144467369898397">
+    <Con from="1" weight="0.299804047168668"/>
+    <Con from="2" weight="-0.180313500999928"/>
+    <Con from="3" weight="0.0961719104130686"/>
+    <Con from="4" weight="0.528230310603976"/>
+    <Con from="5" weight="-0.41753319692798"/>
+    <Con from="6" weight="-0.386615330305496"/>
+    <Con from="7" weight="-0.318385443987316"/>
+    <Con from="8" weight="-0.612372423896225"/>
+    <Con from="9" weight="-0.788248240214104"/>
+    <Con from="10" weight="0.6759839698621"/>
+    <Con from="11" weight="0.15178857948886"/>
+    <Con from="12" weight="0.172475052169503"/>
+    <Con from="13" weight="-0.0271054528042359"/>
+    <Con from="14" weight="1.35542449678526"/>
+    <Con from="15" weight="-0.957660206469491"/>
+    <Con from="16" weight="-0.56429022032144"/>
+    <Con from="17" weight="6.63678612076246"/>
+    <Con from="18" weight="-3.25869201545746"/>
+    <Con from="19" weight="20.1399414434268"/>
+   </Neuron>
+   <Neuron id="28" bias="0.134715888302783">
+    <Con from="1" weight="0.275637880929566"/>
+    <Con from="2" weight="0.225477359909564"/>
+    <Con from="3" weight="0.532397071694921"/>
+    <Con from="4" weight="0.254652577126399"/>
+    <Con from="5" weight="0.34477346423082"/>
+    <Con from="6" weight="-0.0185948460828513"/>
+    <Con from="7" weight="-0.174095048755407"/>
+    <Con from="8" weight="0.322631945825406"/>
+    <Con from="9" weight="0.566960790613666"/>
+    <Con from="10" weight="0.460214024269953"/>
+    <Con from="11" weight="0.4671842278447"/>
+    <Con from="12" weight="0.684678544756025"/>
+    <Con from="13" weight="-0.43682116009295"/>
+    <Con from="14" weight="-0.607295121782061"/>
+    <Con from="15" weight="0.0961114660010791"/>
+    <Con from="16" weight="-0.665329259520202"/>
+    <Con from="17" weight="0.101573315422131"/>
+    <Con from="18" weight="0.454495947454307"/>
+    <Con from="19" weight="-0.661189883408081"/>
+   </Neuron>
+   <Neuron id="29" bias="0.051718721492216">
+    <Con from="1" weight="0.427673223474994"/>
+    <Con from="2" weight="-0.240870290668681"/>
+    <Con from="3" weight="0.626906574843451"/>
+    <Con from="4" weight="-0.0654362104367465"/>
+    <Con from="5" weight="-0.59235824351199"/>
+    <Con from="6" weight="0.499010005220771"/>
+    <Con from="7" weight="0.352138044778258"/>
+    <Con from="8" weight="0.311958510708064"/>
+    <Con from="9" weight="-0.154413153557107"/>
+    <Con from="10" weight="0.140011451207101"/>
+    <Con from="11" weight="0.30265667331405"/>
+    <Con from="12" weight="0.502528736926615"/>
+    <Con from="13" weight="-0.632627828093246"/>
+    <Con from="14" weight="-0.53579544830136"/>
+    <Con from="15" weight="-0.43819484077394"/>
+    <Con from="16" weight="0.645896365074441"/>
+    <Con from="17" weight="0.266179226711392"/>
+    <Con from="18" weight="-0.485033433465287"/>
+    <Con from="19" weight="-0.664214875455946"/>
+   </Neuron>
+  </NeuralLayer>
+  <NeuralLayer numberOfNeurons="1">
+   <Neuron id="30" bias="4.65278889707089">
+    <Con from="20" weight="10.2314611247948"/>
+    <Con from="21" weight="1.28653549731429"/>
+    <Con from="22" weight="0.0383957024198025"/>
+    <Con from="23" weight="6.84126448699749"/>
+    <Con from="24" weight="3.67325612583887"/>
+    <Con from="25" weight="3.87224051321605"/>
+    <Con from="26" weight="3.91325278736427"/>
+    <Con from="27" weight="-19.4573243348528"/>
+    <Con from="28" weight="0.0600119483063437"/>
+    <Con from="29" weight="0.170000576600432"/>
+    <Con from="1" weight="-6.53457868288962"/>
+    <Con from="2" weight="-4.39040132636198"/>
+    <Con from="3" weight="-6.39939408206075"/>
+    <Con from="4" weight="-0.0740330735221505"/>
+    <Con from="5" weight="-0.442434413684532"/>
+    <Con from="6" weight="-6.60839924623795"/>
+    <Con from="7" weight="-5.75646664692392"/>
+    <Con from="8" weight="-5.96686965726298"/>
+    <Con from="9" weight="-5.96321564295881"/>
+    <Con from="10" weight="19.3117251461294"/>
+    <Con from="11" weight="-5.27513607830708"/>
+    <Con from="12" weight="-4.86825490454"/>
+    <Con from="13" weight="0.348445995089827"/>
+    <Con from="14" weight="-0.100366680173908"/>
+    <Con from="15" weight="0.00616570496957662"/>
+    <Con from="16" weight="0.0588614701514511"/>
+    <Con from="17" weight="0.0359999158298963"/>
+    <Con from="18" weight="0.00559822138227394"/>
+    <Con from="19" weight="-0.0235509998607702"/>
+   </Neuron>
+  </NeuralLayer>
+  <NeuralLayer numberOfNeurons="2" activationFunction="threshold" threshold="0.5">
+   <Neuron id="31" bias="1.0">
+    <Con from="30" weight="-1.0"/>
+   </Neuron>
+   <Neuron id="32" bias="0.0">
+    <Con from="30" weight="1.0"/>
+   </Neuron>
+  </NeuralLayer>
+  <NeuralOutputs numberOfOutputs="2">
+   <NeuralOutput outputNeuron="31">
+    <DerivedField name="derivedNO_result" optype="continuous" dataType="double">
+     <NormDiscrete field="result" value="INDIA_LOST"/>
+    </DerivedField>
+   </NeuralOutput>
+   <NeuralOutput outputNeuron="32">
+    <DerivedField name="derivedNO_result" optype="continuous" dataType="double">
+     <NormDiscrete field="result" value="INDIA_WON"/>
+    </DerivedField>
+   </NeuralOutput>
+  </NeuralOutputs>
+ </NeuralNetwork>
+</PMML>

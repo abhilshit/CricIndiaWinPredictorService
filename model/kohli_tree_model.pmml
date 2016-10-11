@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 http://www.dmg.org/v4-2/pmml-4-2.xsd">
+ <Header copyright="Copyright (c) 2016 asoni" description="RPart Decision Tree Model">
+  <Extension name="user" value="asoni" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2016-10-11 20:02:46</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="9">
+  <DataField name="result" optype="categorical" dataType="string">
+   <Value value="INDIA_LOST"/>
+   <Value value="INDIA_WON"/>
+  </DataField>
+  <DataField name="opposite_team" optype="categorical" dataType="string">
+   <Value value="Afghanistan"/>
+   <Value value="Australia"/>
+   <Value value="Bangladesh"/>
+   <Value value="England"/>
+   <Value value="Ireland"/>
+   <Value value="Netherlands"/>
+   <Value value="New Zealand"/>
+   <Value value="Pakistan"/>
+   <Value value="South Africa"/>
+   <Value value="Sri Lanka"/>
+   <Value value="United Arab Emirates"/>
+   <Value value="West Indies"/>
+   <Value value="Zimbabwe"/>
+  </DataField>
+  <DataField name="chasing" optype="categorical" dataType="string">
+   <Value value="false"/>
+   <Value value="true"/>
+  </DataField>
+  <DataField name="batsmanScoreIn10Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn10Overs" optype="continuous" dataType="double"/>
+  <DataField name="batsmanScoreIn20Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn20Overs" optype="continuous" dataType="double"/>
+  <DataField name="batsmanScoreIn30Overs" optype="continuous" dataType="double"/>
+  <DataField name="indiaScoreIn30Overs" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <TreeModel modelName="RPart_Model" functionName="classification" algorithmName="rpart" splitCharacteristic="binarySplit" missingValueStrategy="defaultChild" noTrueChildStrategy="returnLastPrediction">
+  <MiningSchema>
+   <MiningField name="result" usageType="predicted"/>
+   <MiningField name="opposite_team" usageType="active"/>
+   <MiningField name="chasing" usageType="active"/>
+   <MiningField name="batsmanScoreIn10Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn10Overs" usageType="active"/>
+   <MiningField name="batsmanScoreIn20Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn20Overs" usageType="active"/>
+   <MiningField name="batsmanScoreIn30Overs" usageType="active"/>
+   <MiningField name="indiaScoreIn30Overs" usageType="active"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_result" optype="categorical" dataType="string" feature="predictedValue"/>
+   <OutputField name="Probability_INDIA_LOST" optype="continuous" dataType="double" feature="probability" value="INDIA_LOST"/>
+   <OutputField name="Probability_INDIA_WON" optype="continuous" dataType="double" feature="probability" value="INDIA_WON"/>
+  </Output>
+  <Node id="1" score="INDIA_WON" recordCount="158" defaultChild="3">
+   <True/>
+   <ScoreDistribution value="INDIA_LOST" recordCount="67" confidence="0.424050632911392"/>
+   <ScoreDistribution value="INDIA_WON" recordCount="91" confidence="0.575949367088608"/>
+   <Node id="2" score="INDIA_LOST" recordCount="78" defaultChild="4">
+    <SimpleSetPredicate field="opposite_team" booleanOperator="isIn">
+     <Array n="4" type="string">&quot;Australia&quot; &quot;England&quot; &quot;New Zealand&quot; &quot;South Africa&quot;</Array>
+    </SimpleSetPredicate>
+    <ScoreDistribution value="INDIA_LOST" recordCount="46" confidence="0.58974358974359"/>
+    <ScoreDistribution value="INDIA_WON" recordCount="32" confidence="0.41025641025641"/>
+    <Node id="4" score="INDIA_LOST" recordCount="18">
+     <SimplePredicate field="indiaScoreIn20Overs" operator="lessThan" value="74.5"/>
+     <ScoreDistribution value="INDIA_LOST" recordCount="16" confidence="0.888888888888889"/>
+     <ScoreDistribution value="INDIA_WON" recordCount="2" confidence="0.111111111111111"/>
+    </Node>
+    <Node id="5" score="INDIA_LOST" recordCount="60" defaultChild="10">
+     <SimplePredicate field="indiaScoreIn20Overs" operator="greaterOrEqual" value="74.5"/>
+     <ScoreDistribution value="INDIA_LOST" recordCount="30" confidence="0.5"/>
+     <ScoreDistribution value="INDIA_WON" recordCount="30" confidence="0.5"/>
+     <Node id="10" score="INDIA_LOST" recordCount="53" defaultChild="20">
+      <SimplePredicate field="batsmanScoreIn30Overs" operator="lessThan" value="71"/>
+      <ScoreDistribution value="INDIA_LOST" recordCount="29" confidence="0.547169811320755"/>
+      <ScoreDistribution value="INDIA_WON" recordCount="24" confidence="0.452830188679245"/>
+      <Node id="20" score="INDIA_LOST" recordCount="9">
+       <SimplePredicate field="batsmanScoreIn30Overs" operator="greaterOrEqual" value="47.5"/>
+       <ScoreDistribution value="INDIA_LOST" recordCount="7" confidence="0.777777777777778"/>
+       <ScoreDistribution value="INDIA_WON" recordCount="2" confidence="0.222222222222222"/>
+      </Node>
+      <Node id="21" score="INDIA_LOST" recordCount="44" defaultChild="42">
+       <SimplePredicate field="batsmanScoreIn30Overs" operator="lessThan" value="47.5"/>
+       <ScoreDistribution value="INDIA_LOST" recordCount="22" confidence="0.5"/>
+       <ScoreDistribution value="INDIA_WON" recordCount="22" confidence="0.5"/>
+       <Node id="42" score="INDIA_LOST" recordCount="26" defaultChild="84">
+        <SimplePredicate field="batsmanScoreIn30Overs" operator="lessThan" value="22.5"/>
+        <ScoreDistribution value="INDIA_LOST" recordCount="16" confidence="0.615384615384615"/>
+        <ScoreDistribution value="INDIA_WON" recordCount="10" confidence="0.384615384615385"/>
+        <Node id="84" score="INDIA_LOST" recordCount="18">
+         <SimplePredicate field="batsmanScoreIn20Overs" operator="greaterOrEqual" value="0.5"/>
+         <ScoreDistribution value="INDIA_LOST" recordCount="13" confidence="0.722222222222222"/>
+         <ScoreDistribution value="INDIA_WON" recordCount="5" confidence="0.277777777777778"/>
+        </Node>
+        <Node id="85" score="INDIA_WON" recordCount="8">
+         <SimplePredicate field="batsmanScoreIn20Overs" operator="lessThan" value="0.5"/>
+         <ScoreDistribution value="INDIA_LOST" recordCount="3" confidence="0.375"/>
+         <ScoreDistribution value="INDIA_WON" recordCount="5" confidence="0.625"/>
+        </Node>
+       </Node>
+       <Node id="43" score="INDIA_WON" recordCount="18">
+        <SimplePredicate field="batsmanScoreIn30Overs" operator="greaterOrEqual" value="22.5"/>
+        <ScoreDistribution value="INDIA_LOST" recordCount="6" confidence="0.333333333333333"/>
+        <ScoreDistribution value="INDIA_WON" recordCount="12" confidence="0.666666666666667"/>
+       </Node>
+      </Node>
+     </Node>
+     <Node id="11" score="INDIA_WON" recordCount="7">
+      <SimplePredicate field="batsmanScoreIn30Overs" operator="greaterOrEqual" value="71"/>
+      <ScoreDistribution value="INDIA_LOST" recordCount="1" confidence="0.142857142857143"/>
+      <ScoreDistribution value="INDIA_WON" recordCount="6" confidence="0.857142857142857"/>
+     </Node>
+    </Node>
+   </Node>
+   <Node id="3" score="INDIA_WON" recordCount="80" defaultChild="6">
+    <SimpleSetPredicate field="opposite_team" booleanOperator="isIn">
+     <Array n="7" type="string">&quot;Afghanistan&quot; &quot;Bangladesh&quot; &quot;Pakistan&quot; &quot;Sri Lanka&quot; &quot;United Arab Emirates&quot; &quot;West Indies&quot; &quot;Zimbabwe&quot;</Array>
+    </SimpleSetPredicate>
+    <ScoreDistribution value="INDIA_LOST" recordCount="21" confidence="0.2625"/>
+    <ScoreDistribution value="INDIA_WON" recordCount="59" confidence="0.7375"/>
+    <Node id="6" score="INDIA_WON" recordCount="54" defaultChild="12">
+     <SimplePredicate field="indiaScoreIn30Overs" operator="lessThan" value="154"/>
+     <ScoreDistribution value="INDIA_LOST" recordCount="20" confidence="0.37037037037037"/>
+     <ScoreDistribution value="INDIA_WON" recordCount="34" confidence="0.62962962962963"/>
+     <Node id="12" score="INDIA_LOST" recordCount="20" defaultChild="24">
+      <SimpleSetPredicate field="opposite_team" booleanOperator="isIn">
+       <Array n="1" type="string">&quot;Sri Lanka&quot;</Array>
+      </SimpleSetPredicate>
+      <ScoreDistribution value="INDIA_LOST" recordCount="11" confidence="0.55"/>
+      <ScoreDistribution value="INDIA_WON" recordCount="9" confidence="0.45"/>
+      <Node id="24" score="INDIA_LOST" recordCount="11">
+       <SimplePredicate field="indiaScoreIn10Overs" operator="greaterOrEqual" value="41.5"/>
+       <ScoreDistribution value="INDIA_LOST" recordCount="8" confidence="0.727272727272727"/>
+       <ScoreDistribution value="INDIA_WON" recordCount="3" confidence="0.272727272727273"/>
+      </Node>
+      <Node id="25" score="INDIA_WON" recordCount="9">
+       <SimplePredicate field="indiaScoreIn10Overs" operator="lessThan" value="41.5"/>
+       <ScoreDistribution value="INDIA_LOST" recordCount="3" confidence="0.333333333333333"/>
+       <ScoreDistribution value="INDIA_WON" recordCount="6" confidence="0.666666666666667"/>
+      </Node>
+     </Node>
+     <Node id="13" score="INDIA_WON" recordCount="34">
+      <SimpleSetPredicate field="opposite_team" booleanOperator="isIn">
+       <Array n="5" type="string">&quot;Bangladesh&quot; &quot;Pakistan&quot; &quot;United Arab Emirates&quot; &quot;West Indies&quot; &quot;Zimbabwe&quot;</Array>
+      </SimpleSetPredicate>
+      <ScoreDistribution value="INDIA_LOST" recordCount="9" confidence="0.264705882352941"/>
+      <ScoreDistribution value="INDIA_WON" recordCount="25" confidence="0.735294117647059"/>
+     </Node>
+    </Node>
+    <Node id="7" score="INDIA_WON" recordCount="26">
+     <SimplePredicate field="indiaScoreIn30Overs" operator="greaterOrEqual" value="154"/>
+     <ScoreDistribution value="INDIA_LOST" recordCount="1" confidence="0.0384615384615385"/>
+     <ScoreDistribution value="INDIA_WON" recordCount="25" confidence="0.961538461538461"/>
+    </Node>
+   </Node>
+  </Node>
+ </TreeModel>
+</PMML>
